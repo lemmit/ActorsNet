@@ -1,0 +1,96 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{089CB21F-1106-4D54-8233-FBAA073DCFF1}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\AzureVMPublishModule.psm1 = PublishScripts\AzureVMPublishModule.psm1
+		PublishScripts\Publish-WebApplicationVM.ps1 = PublishScripts\Publish-WebApplicationVM.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{15817F95-60D6-47E2-96F9-E827B15B1C71}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Configurations\AspNetAkkaJSActors-WAWS-dev.json = PublishScripts\Configurations\AspNetAkkaJSActors-WAWS-dev.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorsNet", "ActorsNet\ActorsNet.csproj", "{EEC68A75-77AD-418C-9DAD-3394AEBF3A65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorsNet.SignalR", "ActorsNet.SignalR\ActorsNet.SignalR.csproj", "{EBAD8B09-369B-4C2F-989E-AA3978E00DE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorsNet.AkkaNet", "ActorsNet.AkkaNet\ActorsNet.AkkaNet.csproj", "{5EC77075-A509-479C-AD73-2CE5F1234011}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorsNet.JavascriptGenerator", "ActorsNet.JavascriptGenerator\ActorsNet.JavascriptGenerator.csproj", "{3821E65A-4F83-4B7A-943A-79CF4669B0B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorsNet.Web", "ActorsNet.Web\ActorsNet.Web.csproj", "{31A3E511-AEF4-4A87-9558-D2A21B756805}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorsNet.JavascriptGenerator.Autofac", "ActorsNet.JavascriptGenerator.Autofac\ActorsNet.JavascriptGenerator.Autofac.csproj", "{6C1D5620-1AC3-487D-B538-4671B1555647}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorsNet.SignalR.Autofac", "ActorsNet.SignalR.Autofac\ActorsNet.SignalR.Autofac.csproj", "{876C7F3F-1E9E-4D3B-A39E-70BCC8CADBB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorsNetTests", "ActorsNetTests\ActorsNetTests.csproj", "{888EB12D-72A3-42C7-8423-326618118F36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorsNet.AkkaNetTests", "ActorsNet.AkkaNetTests\ActorsNet.AkkaNetTests.csproj", "{7BD13018-3252-44F3-A288-7FBD9C3FD86D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorsNet.JavascriptGeneratorTests", "ActorsNet.JavascriptGeneratorTests\ActorsNet.JavascriptGeneratorTests.csproj", "{EF2DD84A-4686-4453-A031-B16EF5678502}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorsNet.SignalRTests", "ActorsNet.SignalRTests\ActorsNet.SignalRTests.csproj", "{8E6A5F95-4A4F-481F-A0A0-644D55BAACDE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EEC68A75-77AD-418C-9DAD-3394AEBF3A65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEC68A75-77AD-418C-9DAD-3394AEBF3A65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEC68A75-77AD-418C-9DAD-3394AEBF3A65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEC68A75-77AD-418C-9DAD-3394AEBF3A65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBAD8B09-369B-4C2F-989E-AA3978E00DE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBAD8B09-369B-4C2F-989E-AA3978E00DE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBAD8B09-369B-4C2F-989E-AA3978E00DE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBAD8B09-369B-4C2F-989E-AA3978E00DE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EC77075-A509-479C-AD73-2CE5F1234011}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EC77075-A509-479C-AD73-2CE5F1234011}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EC77075-A509-479C-AD73-2CE5F1234011}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EC77075-A509-479C-AD73-2CE5F1234011}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3821E65A-4F83-4B7A-943A-79CF4669B0B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3821E65A-4F83-4B7A-943A-79CF4669B0B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3821E65A-4F83-4B7A-943A-79CF4669B0B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3821E65A-4F83-4B7A-943A-79CF4669B0B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31A3E511-AEF4-4A87-9558-D2A21B756805}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31A3E511-AEF4-4A87-9558-D2A21B756805}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31A3E511-AEF4-4A87-9558-D2A21B756805}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31A3E511-AEF4-4A87-9558-D2A21B756805}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C1D5620-1AC3-487D-B538-4671B1555647}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C1D5620-1AC3-487D-B538-4671B1555647}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C1D5620-1AC3-487D-B538-4671B1555647}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C1D5620-1AC3-487D-B538-4671B1555647}.Release|Any CPU.Build.0 = Release|Any CPU
+		{876C7F3F-1E9E-4D3B-A39E-70BCC8CADBB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{876C7F3F-1E9E-4D3B-A39E-70BCC8CADBB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{876C7F3F-1E9E-4D3B-A39E-70BCC8CADBB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{876C7F3F-1E9E-4D3B-A39E-70BCC8CADBB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{888EB12D-72A3-42C7-8423-326618118F36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{888EB12D-72A3-42C7-8423-326618118F36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{888EB12D-72A3-42C7-8423-326618118F36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{888EB12D-72A3-42C7-8423-326618118F36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BD13018-3252-44F3-A288-7FBD9C3FD86D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BD13018-3252-44F3-A288-7FBD9C3FD86D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BD13018-3252-44F3-A288-7FBD9C3FD86D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BD13018-3252-44F3-A288-7FBD9C3FD86D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF2DD84A-4686-4453-A031-B16EF5678502}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF2DD84A-4686-4453-A031-B16EF5678502}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF2DD84A-4686-4453-A031-B16EF5678502}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF2DD84A-4686-4453-A031-B16EF5678502}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E6A5F95-4A4F-481F-A0A0-644D55BAACDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E6A5F95-4A4F-481F-A0A0-644D55BAACDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E6A5F95-4A4F-481F-A0A0-644D55BAACDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E6A5F95-4A4F-481F-A0A0-644D55BAACDE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{15817F95-60D6-47E2-96F9-E827B15B1C71} = {089CB21F-1106-4D54-8233-FBAA073DCFF1}
+	EndGlobalSection
+EndGlobal

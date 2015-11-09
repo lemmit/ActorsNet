@@ -1,0 +1,47 @@
+﻿var ActorsNet = {};
+var __guid = function() {
+function s4() {
+return Math.floor((1 + Math.random()) * 0x10000)
+.toString(16)
+.substring(1);
+}
+
+return s4() + s4() + "-" + s4() + "-" + s4() + "-" +
+s4() + "-" + s4() + s4() + s4();
+};
+var __createMessage = function(messageType)
+{
+return {
+MessageTypeName: messageType,
+MessageData: {},
+Guid: __guid(),
+setMessageData: function(data) {
+this.MessageData = data;
+}
+};
+};
+@foreach (var actorSystem in ViewBag.MessagesBySystem)
+{
+    <text>
+        ActorsNet.@(actorSystem.Key) = {
+        create : function(){
+        return new ActorsNetSystem("@(actorSystem.Key)")
+        }
+        };
+        @foreach (var messageTypeName in actorSystem.Value)
+        {
+            <text>
+
+                ActorsNet.@(actorSystem.Key.Replace(".", "_")).@(messageTypeName.Replace(".", "_")) = {
+                create : function(){
+                var msg =__createMessage("@(messageTypeName)");
+                msg.setMessageData(
+                @Html.Raw(ViewBag.JsonStringFromMessageType[messageTypeName])
+                );
+                return msg;
+                }
+                };
+            </text>
+        }
+    </text>
+}
