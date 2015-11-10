@@ -6,6 +6,12 @@ using ActorsNet.JavascriptGenerator.Providers.Interfaces;
 
 namespace ActorsNet.JavascriptGenerator.Controllers
 {
+    /// <summary>
+    /// Javascript Generator controller
+    /// Returns strongly typed message factories 
+    /// that can be used to write JS client side 
+    /// using code completion tools 
+    /// </summary>
     public class ActorNetController : Controller
     {
         private readonly IJsonStringOfMessageProvider _jsonStringOfMessageProvider;

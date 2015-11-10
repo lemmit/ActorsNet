@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using ActorsNet.Infrastructure.Interfaces;
-using Akka.Actor;
+using ActorsNet.Exceptions;
+using ActorSystem = Akka.Actor.ActorSystem;
+using IActorRef = Akka.Actor.IActorRef;
 
 namespace ActorsNet.AkkaNet.Infrastructure
 {
@@ -37,15 +39,22 @@ namespace ActorsNet.AkkaNet.Infrastructure
 
         private string PrepareFullPath(string actorPath)
         {
-            return "akka://" + _actorSystem.Name +
+            return "akka.tcp://" + _actorSystem.Name +
                    "/user" + actorPath;
         }
 
         private IActorRef FindActorUsingActorSystem(string fullPath)
         {
-            var actorSelection = _actorSystem.ActorSelection(fullPath);
-            var actorFindTask = Task.Run(() => actorSelection.ResolveOne(_timeOut));
-            return actorFindTask.Result;
+            try
+            {
+                var actorSelection = _actorSystem.ActorSelection(fullPath);
+                var actorFindTask = Task.Run(() => actorSelection.ResolveOne(_timeOut));
+                return actorFindTask.Result;
+            }
+            catch (Exception e)
+            {
+                throw new ActorNotFoundException(fullPath, e);
+            }
         }
     }
 }

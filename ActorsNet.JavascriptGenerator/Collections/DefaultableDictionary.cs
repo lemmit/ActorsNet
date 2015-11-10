@@ -3,6 +3,11 @@ using System.Collections.Generic;
 
 namespace ActorsNet.JavascriptGenerator.Collections
 {
+    /// <summary>
+    /// Dictionary that returns default value instead of throwing exception if key is not available
+    /// </summary>
+    /// <typeparam name="TKey">The type of the key.</typeparam>
+    /// <typeparam name="TValue">The type of the value.</typeparam>
     public class DefaultableDictionary<TKey, TValue> : IDictionary<TKey, TValue>
     {
         private readonly TValue defaultValue;

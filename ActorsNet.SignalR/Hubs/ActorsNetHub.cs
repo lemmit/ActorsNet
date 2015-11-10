@@ -1,4 +1,5 @@
 ﻿using System;
+using ActorsNet.Exceptions;
 using ActorsNet.Infrastructure;
 using ActorsNet.Models;
 using ActorsNet.Services;
@@ -8,21 +9,24 @@ using Microsoft.AspNet.SignalR;
 
 namespace ActorsNet.SignalR.Hubs
 {
+    /// <summary>
+    /// Maps the messages from client to give actor system using system's name and message type name.
+    /// </summary>
     public class ActorsNetHub : Hub
     {
-        private readonly ActorSystemResolver _actorSystemServiceResolver;
+        private readonly ActorSystemResolver _actorSystemResolver;
         private readonly IMessageMapper _messageMapper;
         private readonly TimeSpan standardTimeOut = TimeSpan.FromSeconds(20);
 
-        public ActorsNetHub(ActorSystemResolver actorSystemServiceResolver, IMessageMapper messageMapper)
+        public ActorsNetHub(ActorSystemResolver actorSystemResolver, IMessageMapper messageMapper)
         {
-            _actorSystemServiceResolver = actorSystemServiceResolver;
+            _actorSystemResolver = actorSystemResolver;
             _messageMapper = messageMapper;
         }
 
         private ActorSystem GetActorSystem(string systemName)
         {
-            return _actorSystemServiceResolver.Resolve(systemName);
+            return _actorSystemResolver.Resolve(systemName);
         }
 
         public bool ActorExists(string systemName, string actorPath)

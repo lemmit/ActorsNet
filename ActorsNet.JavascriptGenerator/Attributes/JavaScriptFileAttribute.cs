@@ -2,7 +2,7 @@
 
 namespace ActorsNet.JavascriptGenerator.Attributes
 {
-    public class JavaScriptFileAttribute : ActionFilterAttribute
+    public sealed class JavaScriptFileAttribute : ActionFilterAttribute
     {
         public override void OnResultExecuted(ResultExecutedContext filterContext)
         {

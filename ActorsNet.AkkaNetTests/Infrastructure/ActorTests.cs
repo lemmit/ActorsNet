@@ -1,26 +1,48 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Akka.Actor;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ActorsNet.AkkaNet.Infrastructure.Tests
 {
+    public class Echo
+    {
+        public Echo(string message)
+        {
+            Message = message;
+        }
+
+        public string Message { get; private set; }
+    }
+
+    public class EchoActor : ReceiveActor
+    {
+        public EchoActor()
+        {
+            Receive<Echo>(echo =>
+            {
+                Sender.Tell(echo, Self);
+            });
+        }
+    }
+
     [TestClass]
     public class ActorTests
     {
-        [TestMethod]
-        public void ActorTest()
+        Actor _actor = null;
+        [ClassInitialize]
+        public void InitializeTest()
         {
-            Assert.Fail();
+            var _actorSystem = Akka.Actor.ActorSystem.Create("TestSystem");
+            var testActor = _actorSystem.ActorOf<EchoActor>("echo");
+            _actor = new Actor(testActor);
         }
 
         [TestMethod]
         public void AskTest()
         {
-            Assert.Fail();
-        }
-
-        [TestMethod]
-        public void TellTest()
-        {
-            Assert.Fail();
+            var messageText = "Echo";
+            var result = _actor.Ask(new Echo(messageText), TimeSpan.FromSeconds(10)).Result;
+            Assert.AreEqual(result.Message, messageText);
         }
     }
 }

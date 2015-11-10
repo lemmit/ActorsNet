@@ -4,9 +4,13 @@ using Autofac.Core;
 
 namespace ActorsNet.Web.Logging
 {
+    /// <summary>
+    /// Autofac logger module.
+    /// Used for debugging the registeration/activation process of the system components.
+    /// </summary>
     public class LogRequestAutofacModule : Module
     {
-        public int depth;
+        public int Depth = 1;
 
         protected override void AttachToComponentRegistration(IComponentRegistry componentRegistry,
             IComponentRegistration registration)
@@ -18,18 +22,18 @@ namespace ActorsNet.Web.Logging
 
         private string GetPrefix()
         {
-            return new string('-', depth*2);
+            return new string('-', Depth*2);
         }
 
         private void RegistrationOnPreparing(object sender, PreparingEventArgs preparingEventArgs)
         {
             Debug.WriteLine("{0}Resolving  {1}", GetPrefix(), preparingEventArgs.Component.Activator.LimitType);
-            depth++;
+            Depth++;
         }
 
         private void RegistrationOnActivating(object sender, ActivatingEventArgs<object> activatingEventArgs)
         {
-            depth--;
+            Depth--;
             Debug.WriteLine("{0}Activating {1}", GetPrefix(), activatingEventArgs.Component.Activator.LimitType);
         }
     }

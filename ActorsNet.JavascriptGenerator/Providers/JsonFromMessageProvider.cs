@@ -7,6 +7,9 @@ using ActorsNet.Services.Interfaces;
 
 namespace ActorsNet.JavascriptGenerator.Providers
 {
+    /// <summary>
+    /// Provides Json stringified objects from given message type name
+    /// </summary>
     public class JsonFromMessageProvider : IJsonStringOfMessageProvider, IMessageMapper
     {
         private readonly Dictionary<string, string> _dictionary = new Dictionary<string, string>();

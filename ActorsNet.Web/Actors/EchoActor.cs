@@ -4,6 +4,10 @@ using Akka.Actor;
 
 namespace ActorsNet.Web.Actors
 {
+    /// <summary>
+    /// Returns Echo message to sender
+    /// Implemented for testing purposes
+    /// </summary>
     public class EchoActor : ReceiveActor
     {
         public EchoActor()

@@ -3,17 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{089CB21F-1106-4D54-8233-FBAA073DCFF1}"
-	ProjectSection(SolutionItems) = preProject
-		PublishScripts\AzureVMPublishModule.psm1 = PublishScripts\AzureVMPublishModule.psm1
-		PublishScripts\Publish-WebApplicationVM.ps1 = PublishScripts\Publish-WebApplicationVM.ps1
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{15817F95-60D6-47E2-96F9-E827B15B1C71}"
-	ProjectSection(SolutionItems) = preProject
-		PublishScripts\Configurations\AspNetAkkaJSActors-WAWS-dev.json = PublishScripts\Configurations\AspNetAkkaJSActors-WAWS-dev.json
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorsNet", "ActorsNet\ActorsNet.csproj", "{EEC68A75-77AD-418C-9DAD-3394AEBF3A65}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorsNet.SignalR", "ActorsNet.SignalR\ActorsNet.SignalR.csproj", "{EBAD8B09-369B-4C2F-989E-AA3978E00DE7}"
@@ -33,8 +22,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorsNet.AkkaNetTests", "ActorsNet.AkkaNetTests\ActorsNet.AkkaNetTests.csproj", "{7BD13018-3252-44F3-A288-7FBD9C3FD86D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorsNet.JavascriptGeneratorTests", "ActorsNet.JavascriptGeneratorTests\ActorsNet.JavascriptGeneratorTests.csproj", "{EF2DD84A-4686-4453-A031-B16EF5678502}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorsNet.SignalRTests", "ActorsNet.SignalRTests\ActorsNet.SignalRTests.csproj", "{8E6A5F95-4A4F-481F-A0A0-644D55BAACDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -82,15 +69,8 @@ Global
 		{EF2DD84A-4686-4453-A031-B16EF5678502}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF2DD84A-4686-4453-A031-B16EF5678502}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF2DD84A-4686-4453-A031-B16EF5678502}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8E6A5F95-4A4F-481F-A0A0-644D55BAACDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8E6A5F95-4A4F-481F-A0A0-644D55BAACDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8E6A5F95-4A4F-481F-A0A0-644D55BAACDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8E6A5F95-4A4F-481F-A0A0-644D55BAACDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{15817F95-60D6-47E2-96F9-E827B15B1C71} = {089CB21F-1106-4D54-8233-FBAA073DCFF1}
 	EndGlobalSection
 EndGlobal

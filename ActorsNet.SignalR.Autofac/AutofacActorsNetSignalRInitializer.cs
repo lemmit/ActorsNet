@@ -7,8 +7,16 @@ using Autofac;
 
 namespace ActorsNet.SignalR.Autofac
 {
+    /// <summary>
+    /// ActorsNet.SignalR module initializer
+    /// </summary>
     public class AutofacActorsNetSignalRInitializer
     {
+        /// <summary>
+        /// Register ActorsNet.SignalR module types in IoC container.
+        /// </summary>
+        /// <param name="builder">Autofac ContainerBuilder.</param>
+        /// <param name="mapperInitializer">The mapper initializer - users definition of actor messages.</param>
         public void RegisterTypes(ContainerBuilder builder,
             INamedMapperInitializer mapperInitializer)
         {

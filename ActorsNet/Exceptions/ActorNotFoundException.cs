@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace ActorsNet.SignalR.Exceptions
+namespace ActorsNet.Exceptions
 {
     [Serializable]
-    internal class ActorNotFoundException : Exception
+    public class ActorNotFoundException : Exception
     {
         public ActorNotFoundException()
         {

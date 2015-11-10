@@ -5,29 +5,33 @@ using Newtonsoft.Json;
 
 namespace ActorsNet.JavascriptGenerator.Factories
 {
-    /*
-        From given type T
-        e.g.:
-        public class Message{
-            public string A { get; private set; }
-            ...
-            public Message(string a, string b, string c...){
-                ...
-            }
-        }
-        creates JSON string:
-        {
-            "a" : ...,
-            "b" : ...,
-            "c" : ...,
-            ...
-        }
-
-        It uses JObject.FromObject method
-        (beware of default constructors!)
-        PROTOTYPE!
-    */
-
+    /// <summary>
+    /// Factory that from given assembly qualified type name creates object and stringifies it to JSON
+    /// </summary>
+    /// <remarks>
+    /// From given type T
+    /// e.g.:
+    /// public class Message
+    /// {
+    ///     public string A { get; private set; }
+    ///     ...
+    ///     public Message(string a, string b, string c...)
+    ///     {
+    ///     ...
+    ///     }
+    /// }
+    /// creates JSON string:
+    /// {
+    ///     "a" : ...,
+    ///     "b" : ...,
+    ///     "c" : ...,
+    ///     ...
+    /// }
+    /// 
+    /// It uses JObject.FromObject method
+    /// (beware of default constructors!)
+    /// PROTOTYPE!
+    /// </remarks>
     public class JsonStringifiedObjectFactory : IJsonStringifiedObjectFactory
     {
         public string CreateExampleJsonObjectOfType(string qualifiedAssemblyName)

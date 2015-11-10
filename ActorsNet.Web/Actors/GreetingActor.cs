@@ -4,6 +4,10 @@ using Akka.Actor;
 
 namespace ActorsNet.Web.Actors
 {
+    /// <summary>
+    /// Returns modified Greet message to sender
+    /// Implemented for testing purposes
+    /// </summary>
     public class GreetingActor : ReceiveActor
     {
         public GreetingActor()

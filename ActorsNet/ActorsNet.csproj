@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\ActorNotFoundException.cs" />
     <Compile Include="Infrastructure\ActorSystem.cs" />
     <Compile Include="Infrastructure\Interfaces\IActor.cs" />
     <Compile Include="Infrastructure\Interfaces\IActorFinder.cs" />
@@ -54,9 +55,7 @@
     <Compile Include="Services\Interfaces\IMapper.cs" />
     <Compile Include="Services\Interfaces\IMessageMapper.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Exceptions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

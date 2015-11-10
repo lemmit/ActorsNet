@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace ActorsNet.JavascriptGenerator.Helper
 {
-    internal class ReflectionHelper
+    internal static class ReflectionHelper
     {
         public static ConstructorInfo ConstructorWithMinimalNumberOfParameters(Type type)
         {
@@ -16,7 +16,11 @@ namespace ActorsNet.JavascriptGenerator.Helper
 
         public static int MinimalNumberOfParametersFromType(Type type)
         {
-            if (!type.IsClass) return 0;
+            if (!type.IsClass)
+            {
+                return 0;
+            }
+
             var constructor = ConstructorWithMinimalNumberOfParameters(type);
             var minimalNumberOfParameters = constructor.GetParameters().Length;
             return minimalNumberOfParameters;

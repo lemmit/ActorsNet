@@ -8,8 +8,16 @@ using Autofac;
 
 namespace ActorsNet.JavascriptGenerator.Autofac
 {
+    /// <summary>
+    /// ActorsNet.JavascriptGenerator module initializer
+    /// </summary>
     public class AutofacActorsNetJavascriptGeneratorInitializer
     {
+        /// <summary>
+        /// Register ActorsNet.JavascriptGenerator module types in IoC container.
+        /// </summary>
+        /// <param name="builder">Autofac ContainerBuilder.</param>
+        /// <param name="mapperInitializer">The mapper initializer - users definition of actor messages.</param>
         public void RegisterTypes(ContainerBuilder builder,
             IMapperInitializer mapperInitializer)
         {

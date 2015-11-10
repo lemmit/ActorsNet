@@ -60,7 +60,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exceptions\ActorNotFoundException.cs" />
     <Compile Include="Exceptions\MappingException.cs" />
     <Compile Include="Hubs\ActorsNetHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

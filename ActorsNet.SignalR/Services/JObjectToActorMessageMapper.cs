@@ -7,8 +7,9 @@ using Newtonsoft.Json.Linq;
 
 namespace ActorsNet.SignalR.Services
 {
-    /* Maps JObject to object of type T using it's type name */
-
+    /// <summary>
+    /// Maps JObject to object of type T using its type name
+    /// </summary>
     public class JObjectToActorMessageMapper : IMessageMapper
     {
         private readonly Dictionary<string, Func<JObject, object>> _dist;

@@ -5,6 +5,12 @@ using ActorsNet.Services.Interfaces;
 
 namespace ActorsNet.JavascriptGenerator.Providers
 {
+    /// <summary>
+    /// Provides names of the message types grouped by system name
+    /// e.g.
+    /// "MySystem" : { "Examplenamespace.Messages.HelloMessage", "Examplenamespace.Messages.PingMessage" },
+    /// "SecondSystem" : { "Namespace2.Messages.TestMessage", "Namespace2.AnyMessage" }
+    /// </summary>
     public class NamesBySystemProvider : INamesBySystemProvider, IMapper
     {
         private readonly Dictionary<string, List<string>> _listsOfMessagesNamesByActorSystem =
