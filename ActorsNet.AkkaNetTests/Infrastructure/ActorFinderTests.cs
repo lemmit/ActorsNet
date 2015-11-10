@@ -11,7 +11,8 @@ namespace ActorsNet.AkkaNet.Infrastructure.Tests
         ActorFinder _finder = null;
         private const string testActorName = "echo";
         private const string testSystemName = "TestSystem";
-        [ClassInitialize]
+
+        [TestInitialize]
         public void InitializeTest()
         {
             var _actorSystem = Akka.Actor.ActorSystem.Create(testSystemName);

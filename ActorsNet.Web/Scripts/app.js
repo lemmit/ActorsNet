@@ -34,13 +34,13 @@ var exampleUsingJsGenerator = function() {
         .then(function() {
             console.log("System[2] opened.");
             var greetActor = mySystem.actorFor("/greeting");
-            var greetMessage = ActorsNet.MySystem.ActorsNet_AkkaNet_Models_Greet.create();
+            var greetMessage = ActorsNet.MySystem.ActorsNet_Web_Messages_Greet.create();
             greetMessage.setMessageData({ Who: "That's me" });
             greetActor
                 .send(greetMessage);
 
             var echoActor = mySystem.actorFor("/echo");
-            var echoMessage = ActorsNet.MySystem.ActorsNet_AkkaNet_Models_Echo.create();
+            var echoMessage = ActorsNet.MySystem.ActorsNet_Web_Messages_Echo.create();
             echoMessage.setMessageData({ Message: "Eccchoooo!" });
             echoActor
                 .ask(echoMessage)
@@ -51,5 +51,5 @@ var exampleUsingJsGenerator = function() {
         });
 };
 
-exampleOne();
-//exampleUsingJsGenerator();
+//exampleOne();
+exampleUsingJsGenerator();

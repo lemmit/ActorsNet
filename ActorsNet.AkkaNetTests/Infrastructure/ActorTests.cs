@@ -29,7 +29,7 @@ namespace ActorsNet.AkkaNet.Infrastructure.Tests
     public class ActorTests
     {
         Actor _actor = null;
-        [ClassInitialize]
+        [TestInitialize]
         public void InitializeTest()
         {
             var _actorSystem = Akka.Actor.ActorSystem.Create("TestSystem");

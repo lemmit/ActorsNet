@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorsNet.JavascriptGenerat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorsNet.SignalR.Autofac", "ActorsNet.SignalR.Autofac\ActorsNet.SignalR.Autofac.csproj", "{876C7F3F-1E9E-4D3B-A39E-70BCC8CADBB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorsNetTests", "ActorsNetTests\ActorsNetTests.csproj", "{888EB12D-72A3-42C7-8423-326618118F36}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorsNet.AkkaNetTests", "ActorsNet.AkkaNetTests\ActorsNet.AkkaNetTests.csproj", "{7BD13018-3252-44F3-A288-7FBD9C3FD86D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorsNet.JavascriptGeneratorTests", "ActorsNet.JavascriptGeneratorTests\ActorsNet.JavascriptGeneratorTests.csproj", "{EF2DD84A-4686-4453-A031-B16EF5678502}"
@@ -57,10 +55,6 @@ Global
 		{876C7F3F-1E9E-4D3B-A39E-70BCC8CADBB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{876C7F3F-1E9E-4D3B-A39E-70BCC8CADBB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{876C7F3F-1E9E-4D3B-A39E-70BCC8CADBB8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{888EB12D-72A3-42C7-8423-326618118F36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{888EB12D-72A3-42C7-8423-326618118F36}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{888EB12D-72A3-42C7-8423-326618118F36}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{888EB12D-72A3-42C7-8423-326618118F36}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7BD13018-3252-44F3-A288-7FBD9C3FD86D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7BD13018-3252-44F3-A288-7FBD9C3FD86D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BD13018-3252-44F3-A288-7FBD9C3FD86D}.Release|Any CPU.ActiveCfg = Release|Any CPU

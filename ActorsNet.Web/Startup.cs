@@ -64,7 +64,7 @@ namespace ActorsNet.Web
         {
             var actorFinder = new ActorFinder(akkaActorSystem);
             var actorSystem = new ActorSystem(akkaActorSystem.Name, actorFinder);
-            builder.RegisterInstance(actorSystem);
+            builder.RegisterInstance<ActorSystem>(actorSystem);
         }
 
         private static void RegisterLogger(ContainerBuilder builder)

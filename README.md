@@ -2,7 +2,10 @@ ActorsNet v0.1.0
 ---------
 
 Asp.Net MVC + SignalR meets Actors!
-Call the actors from your javascript. All you have to do is to declare used messages types.
+
+Call the sever-side actors within your javascript. 
+All you have to do is to declare used messages types. 
+See examples below!
 
 ---------
 ## Modules description
@@ -106,6 +109,7 @@ Projects that contains initializer classes that can be used with Autofac IoC.
 
 
 ### TODOs
+- Implement and test different Akka.Net ActorFinder strategies (akka.tcp/cluster)
 - Integration with client side actors library (https://github.com/mental/webactors ?) to allow communication between JS actors
 - Implementation of a server side router actor to allow calls from server to client-side declared actors (Actorish-WebWorkers)
 - Different implementation of ActorSystem (Microsoft Orleans)

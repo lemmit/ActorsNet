@@ -212,7 +212,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\actorsnet.js" />
     <Content Include="Scripts\app.js" />
-    <Content Include="Scripts\app_new.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

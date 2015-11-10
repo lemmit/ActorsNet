@@ -39,7 +39,7 @@ namespace ActorsNet.AkkaNet.Infrastructure
 
         private string PrepareFullPath(string actorPath)
         {
-            return "akka.tcp://" + _actorSystem.Name +
+            return "akka://" + _actorSystem.Name +
                    "/user" + actorPath;
         }
 

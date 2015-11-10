@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using ActorsNet.JavascriptGeneratorTests.Helpers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ActorsNet.JavascriptGenerator.Factories.Tests
 {
@@ -31,7 +32,6 @@ namespace ActorsNet.JavascriptGenerator.Factories.Tests
             public string Field { get; private set; }
             public TypeWithParameterlessConstructor()
             {
-                //a lil' bit weird case, serializers ignore those fields...
                 Field = "test";
             }
         }
@@ -39,9 +39,9 @@ namespace ActorsNet.JavascriptGenerator.Factories.Tests
         [TestMethod]
         public void CreateExampleJsonObjectUsingParameterlessConstructorTest()
         {
-            const string stringifiedObject = "{}";
+            string stringifiedObject = "{\"Field\": \"test\"}".ExceptBlanks();
             var strObj = CreateStringifiedObject<TypeWithParameterlessConstructor>();
-            Assert.AreEqual(stringifiedObject, strObj);
+            Assert.AreEqual(stringifiedObject, strObj.ExceptBlanks());
         }
 
         public class TypeWithConstructorWithParameters
@@ -58,9 +58,9 @@ namespace ActorsNet.JavascriptGenerator.Factories.Tests
         [TestMethod]
         public void CreateExampleJsonObjectUsingConstructorWithParametersTest()
         {
-            const string stringifiedObject = "{ Field: null, NumberField: 0}";
+            string stringifiedObject = "{ \"Field\": null, \"NumberField\": 0}".ExceptBlanks();
             var strObj = CreateStringifiedObject<TypeWithConstructorWithParameters>();
-            Assert.AreEqual(stringifiedObject, strObj);
+            Assert.AreEqual(stringifiedObject, strObj.ExceptBlanks());
         }
 
         public interface InterfaceType
@@ -74,7 +74,7 @@ namespace ActorsNet.JavascriptGenerator.Factories.Tests
             //should be exception and return {}
             const string stringifiedObject = "{}";
             var strObj = CreateStringifiedObject<InterfaceType>();
-            Assert.AreEqual(stringifiedObject, strObj);
+            Assert.AreEqual(stringifiedObject, strObj.ExceptBlanks());
         }
 
         public abstract class AbstractType
@@ -88,7 +88,7 @@ namespace ActorsNet.JavascriptGenerator.Factories.Tests
             //should be exception inside and return {}
             const string stringifiedObject = "{}";
             var strObj = CreateStringifiedObject<AbstractType>();
-            Assert.AreEqual(stringifiedObject, strObj);
+            Assert.AreEqual(stringifiedObject, strObj.ExceptBlanks());
         }
 
         public enum IntBasedEnumType : int
