@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using ActorsNet.Services;
 using ActorsNet.SignalR.Hubs;
 using ActorsNet.SignalR.Services;
@@ -24,6 +23,6 @@ namespace ActorsNet.SignalR.Autofac
             builder.RegisterType<ActorsNetHub>().ExternallyOwned();
             builder.RegisterType<JObjectToStronglyTypedObjectMapper>().As<IMessageMapper>();
             builder.RegisterHubs(AppDomain.CurrentDomain.GetAssemblies()); 
+        }
     }
-}
 }
