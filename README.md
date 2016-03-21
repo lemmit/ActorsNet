@@ -4,8 +4,7 @@ ActorsNet v0.1.0
 Asp.Net MVC + SignalR meets Actors!
 
 Call the sever-side actors within your javascript. 
-All you have to do is to declare used messages types. 
-See examples below!
+Initialize your actor system and done!
 
 ---------
 ## Modules description
@@ -33,6 +32,8 @@ Projects that contains initializer classes that can be used with Autofac IoC.
 
 ### Server-side
 
+#### Define actors and messages
+```language-csharp
     public class EchoActor : ReceiveActor
     {
         public EchoActor()
@@ -49,25 +50,13 @@ Projects that contains initializer classes that can be used with Autofac IoC.
         }
 		public string Message { get; private set; }
     }
-	
-	//Initialization class for message mapper used by SignalR hub to cast messages to types understandable by actor system, and used as initializer for JavascriptGenerator module
-	public class MySystemMapperInitializer : INamedMapperInitializer
-    {
-        public MySystemMapperInitializer(string name)
-        {
-            Name = name;
-        }
+```
+#### Create actor system, and initialize it in the container
 
-        public string Name { get; }
-		
-        public void Initialize(IMapper messageMapper)
-        {
-            messageMapper.Add<Greet>();
-            messageMapper.Add<Echo>();
-        }
-    }
+	builder.RegisterActorSystem(actorSystem);	
 
 ### Example without ActorsNet.JavascriptGenerator
+```language-javascript
 	(function() {
     var actorSystem = new ActorsNetSystem("MySystem");
     actorSystem
@@ -86,8 +75,9 @@ Projects that contains initializer classes that can be used with Autofac IoC.
                 });
         });
 	})();
-
+```
 ### Example with JavascriptGenerator
+```language-javascript
 	(function() {
 	    var mySystem = ActorsNet.MySystem.create();
 	    mySystem
@@ -106,9 +96,10 @@ Projects that contains initializer classes that can be used with Autofac IoC.
 	                });
 	        });
 	})();
-
+```
 
 ### TODOs
+- Add more tests
 - Implement and test different Akka.Net ActorFinder strategies (akka.tcp/cluster)
 - Integration with client side actors library (https://github.com/mental/webactors ?) to allow communication between JS actors
 - Implementation of a server side router actor to allow calls from server to client-side declared actors (Actorish-WebWorkers)
