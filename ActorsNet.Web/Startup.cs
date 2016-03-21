@@ -11,10 +11,7 @@ using ActorSystem = ActorsNet.Infrastructure.ActorSystem;
 using AkkaActorSystem = Akka.Actor.ActorSystem;
 using AutofacDependencyResolver = Autofac.Integration.Mvc.AutofacDependencyResolver;
 using ActorsNet.JavascriptGenerator.Autofac;
-using ActorsNet.JavascriptGenerator.Providers.Interfaces;
-using System;
-using System.Collections.Generic;
-using ActorsNet.Web.Messages;
+using ActorsNet.Web.Providers;
 
 namespace ActorsNet.Web
 {
@@ -31,22 +28,20 @@ namespace ActorsNet.Web
         {
             builder.RegisterModule<LogRequestAutofacModule>();
         }
-    }
 
-    public class MessagesBySystemNameProvider : IMessageNamesBySystemProvider
-    {
-        public IDictionary<string, IList<string>> Get()
+        public static void SetIoCContainerForMVC(this IContainer container)
         {
-            return new Dictionary<string, IList<string>>
-            {
-                { "MySystem", new []
-                {
-                    typeof(Greet).FullName,
-                    typeof(Echo).FullName,
-                }},
-            };
+            var mvcResolver = new AutofacDependencyResolver(container);
+            DependencyResolver.SetResolver(mvcResolver);
+        }
+
+        public static void SetIoCContainerForSignalR(this IContainer container)
+        {
+            var signalRResolver = new Autofac.Integration.SignalR.AutofacDependencyResolver(container);
+            GlobalHost.DependencyResolver = signalRResolver;
         }
     }
+    
 
     public class Startup
     {
@@ -64,7 +59,8 @@ namespace ActorsNet.Web
             builder.RegisterActorSystem(actorSystem);
 
             var container = builder.Build();
-            SetIoCContainerForMVCandSignalR(container);
+            container.SetIoCContainerForMVC();
+            container.SetIoCContainerForSignalR();
 
             app.MapSignalR();
         }
@@ -77,15 +73,6 @@ namespace ActorsNet.Web
             actorSystem.ActorOf<EchoActor>("echo");
             return actorSystem;
         }
-
-        private static void SetIoCContainerForMVCandSignalR(IContainer container)
-        {
-            var mvcResolver = new AutofacDependencyResolver(container);
-            DependencyResolver.SetResolver(mvcResolver);
-
-            var signalRResolver = new Autofac.Integration.SignalR.AutofacDependencyResolver(container);
-            GlobalHost.DependencyResolver = signalRResolver;
-        }
-
+        
     }
 }
