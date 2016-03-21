@@ -33,7 +33,7 @@ var Logger = (function() {
 })();
 
 var ActorsNetSystem = function(systemName) {
-    Logger.setLoggingLevel(LoggingLevel.OFF);
+    Logger.setLoggingLevel(LoggingLevel.ERROR);
     Logger.debug("Creating ActorsNet system: ", systemName);
     var system = {
         systemName: systemName,
@@ -50,15 +50,14 @@ var ActorsNetSystem = function(systemName) {
     };
     system.createMessage = function(messageType) {
         Logger.debug("createMessage()", messageType);
-        var msg = {
-            MessageTypeName: messageType,
-            MessageData: {},
-            Guid: system.guid(),
-            setMessageData: function(data) {
-                this.MessageData = data;
-            }
+        var Message = function(msgType) {
+            this.payload = { '$type': msgType };
+            this.guid = system.guid();
         };
-        return msg;
+        Message.prototype.setMessageData = function(data) {
+            Object.assign(this.payload, data);
+        };
+        return new Message(messageType);
     };
 
     system.open = function() {

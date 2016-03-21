@@ -1,9 +1,11 @@
-﻿using ActorsNet.Initializers.Interfaces;
+﻿using System;
+using System.Reflection;
 using ActorsNet.Services;
-using ActorsNet.Services.Interfaces;
 using ActorsNet.SignalR.Hubs;
 using ActorsNet.SignalR.Services;
+using ActorsNet.SignalR.Services.Interfaces;
 using Autofac;
+using Autofac.Integration.SignalR;
 
 namespace ActorsNet.SignalR.Autofac
 {
@@ -20,6 +22,8 @@ namespace ActorsNet.SignalR.Autofac
         {
             builder.RegisterType<ActorSystemResolver>();
             builder.RegisterType<ActorsNetHub>().ExternallyOwned();
-        }
+            builder.RegisterType<JObjectToStronglyTypedObjectMapper>().As<IMessageMapper>();
+            builder.RegisterHubs(AppDomain.CurrentDomain.GetAssemblies()); 
     }
+}
 }

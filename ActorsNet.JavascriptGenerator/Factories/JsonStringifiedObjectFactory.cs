@@ -43,7 +43,7 @@ namespace ActorsNet.JavascriptGenerator.Factories
                 var obj = CreateExampleObjectFromTypeName(type);
                 serializedObj = SerializeObjectToString(obj);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 //PROTOTYPE.
             }

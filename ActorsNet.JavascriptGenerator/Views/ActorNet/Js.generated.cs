@@ -36,81 +36,89 @@ namespace ASP
         }
         public override void Execute()
         {
-WriteLiteral(@"var ActorsNet = {};
-var __guid = function() {
-function s4() {
-return Math.floor((1 + Math.random()) * 0x10000)
-.toString(16)
-.substring(1);
-}
+WriteLiteral(@"var ActorsNet = function(){
+    var ActorsNet = {};
 
-return s4() + s4() + ""-"" + s4() + ""-"" + s4() + ""-"" +
-s4() + ""-"" + s4() + s4() + s4();
-};
-var __createMessage = function(messageType)
+    var __guid = function() {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+                    .toString(16)
+                    .substring(1);
+        }
+        return s4() + s4() + ""-"" + s4() + ""-"" + s4() + ""-"" + s4() + ""-"" + s4() + s4() + s4();
+    };
+
+    var __createMessage = function(messageType)
 {
-return {
-MessageTypeName: messageType,
-MessageData: {},
-Guid: __guid(),
-setMessageData: function(data) {
-this.MessageData = data;
-}
-};
-};
+        var Message = function(msgType) {
+            this.payload = { '$type': msgType };
+            this.guid = __guid();
+        };
+        Message.prototype.setMessageData = function(data) {
+            Object.assign(this.payload, data);
+        };
+        return new Message(messageType);
+    };
 ");
 
             
-            #line 23 "..\..\Views\ActorNet\Js.cshtml"
- foreach (var actorSystem in ViewBag.MessagesBySystem)
-{
-
-            
-            #line default
-            #line hidden
-WriteLiteral("    ");
-
-WriteLiteral("\r\n        ActorsNet.");
-
-            
-            #line 26 "..\..\Views\ActorNet\Js.cshtml"
-              Write(actorSystem.Key);
-
-            
-            #line default
-            #line hidden
-WriteLiteral(" = {\r\n        create : function(){\r\n        return new ActorsNetSystem(\"");
-
-            
-            #line 28 "..\..\Views\ActorNet\Js.cshtml"
-                                Write(actorSystem.Key);
-
-            
-            #line default
-            #line hidden
-WriteLiteral("\")\r\n        }\r\n        };\r\n");
-
-            
-            #line 31 "..\..\Views\ActorNet\Js.cshtml"
-        
+            #line 24 "..\..\Views\ActorNet\Js.cshtml"
+    
             
             #line default
             #line hidden
             
-            #line 31 "..\..\Views\ActorNet\Js.cshtml"
-         foreach (var messageTypeName in actorSystem.Value)
-        {
+            #line 24 "..\..\Views\ActorNet\Js.cshtml"
+     foreach (var actorSystem in ViewBag.MessagesBySystem)
+    {
 
             
             #line default
             #line hidden
-WriteLiteral("            ");
+WriteLiteral("        ");
 
-WriteLiteral("\r\n\r\n                ActorsNet.");
+WriteLiteral("\r\n            ActorsNet.");
 
             
-            #line 35 "..\..\Views\ActorNet\Js.cshtml"
-                      Write(actorSystem.Key.Replace(".", "_"));
+            #line 27 "..\..\Views\ActorNet\Js.cshtml"
+                  Write(actorSystem.Key);
+
+            
+            #line default
+            #line hidden
+WriteLiteral(" = {\r\n                create : function(){\r\n                    return new Actors" +
+"NetSystem(\"");
+
+            
+            #line 29 "..\..\Views\ActorNet\Js.cshtml"
+                                            Write(actorSystem.Key);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\")\r\n                }\r\n            };\r\n");
+
+            
+            #line 32 "..\..\Views\ActorNet\Js.cshtml"
+            
+            
+            #line default
+            #line hidden
+            
+            #line 32 "..\..\Views\ActorNet\Js.cshtml"
+             foreach (var messageTypeName in actorSystem.Value)
+            {
+
+            
+            #line default
+            #line hidden
+WriteLiteral("                ");
+
+WriteLiteral("\r\n\r\n                    ActorsNet.");
+
+            
+            #line 36 "..\..\Views\ActorNet\Js.cshtml"
+                          Write(actorSystem.Key.Replace(".", "_"));
 
             
             #line default
@@ -118,55 +126,58 @@ WriteLiteral("\r\n\r\n                ActorsNet.");
 WriteLiteral(".");
 
             
-            #line 35 "..\..\Views\ActorNet\Js.cshtml"
-                                                           Write(messageTypeName.Replace(".", "_"));
+            #line 36 "..\..\Views\ActorNet\Js.cshtml"
+                                                               Write(messageTypeName.Replace(".", "_"));
 
             
             #line default
             #line hidden
-WriteLiteral(" = {\r\n                create : function(){\r\n                var msg =__createMess" +
-"age(\"");
+WriteLiteral(" = {\r\n                        create : function(){\r\n                            v" +
+"ar msg =__createMessage(\"");
 
             
-            #line 37 "..\..\Views\ActorNet\Js.cshtml"
-                                      Write(messageTypeName);
-
-            
-            #line default
-            #line hidden
-WriteLiteral("\");\r\n                msg.setMessageData(\r\n");
-
-WriteLiteral("                ");
-
-            
-            #line 39 "..\..\Views\ActorNet\Js.cshtml"
-           Write(Html.Raw(ViewBag.JsonStringFromMessageType[messageTypeName]));
+            #line 38 "..\..\Views\ActorNet\Js.cshtml"
+                                                  Write(messageTypeName);
 
             
             #line default
             #line hidden
-WriteLiteral("\r\n                );\r\n                return msg;\r\n                }\r\n           " +
-"     };\r\n            ");
+WriteLiteral("\");\r\n                            msg.setMessageData(\r\n");
+
+WriteLiteral("                                ");
+
+            
+            #line 40 "..\..\Views\ActorNet\Js.cshtml"
+                           Write(Html.Raw(ViewBag.JsonStringFromMessageType[messageTypeName]));
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n                            );\r\n                            return msg;\r\n      " +
+"                  }\r\n                    };\r\n                ");
 
 WriteLiteral("\r\n");
 
             
-            #line 45 "..\..\Views\ActorNet\Js.cshtml"
-        }
+            #line 46 "..\..\Views\ActorNet\Js.cshtml"
+            }
 
             
             #line default
             #line hidden
-WriteLiteral("    ");
+WriteLiteral("        ");
 
 WriteLiteral("\r\n");
 
             
-            #line 47 "..\..\Views\ActorNet\Js.cshtml"
-}
+            #line 48 "..\..\Views\ActorNet\Js.cshtml"
+    }
+
             
             #line default
             #line hidden
+WriteLiteral("    return ActorsNet;\r\n}();");
+
         }
     }
 }

@@ -91,7 +91,7 @@ namespace ActorsNet.JavascriptGenerator.Factories.Tests
             Assert.AreEqual(stringifiedObject, strObj.ExceptBlanks());
         }
 
-        public enum IntBasedEnumType : int
+        public enum IntBasedEnumType
         {
             Default = 0,
             One = 1,

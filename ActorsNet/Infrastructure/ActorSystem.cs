@@ -22,7 +22,7 @@ namespace ActorsNet.Infrastructure
             {
                 actor = _actorFinder.FindActorByPath(actorPath);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }

@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Web.Mvc;
 using ActorsNet.JavascriptGenerator.Attributes;
 using ActorsNet.JavascriptGenerator.Collections;
+using ActorsNet.JavascriptGenerator.Factories.Interfaces;
 using ActorsNet.JavascriptGenerator.Providers.Interfaces;
 
 namespace ActorsNet.JavascriptGenerator.Controllers
@@ -14,16 +17,16 @@ namespace ActorsNet.JavascriptGenerator.Controllers
     /// </summary>
     public class ActorNetController : Controller
     {
-        private readonly IJsonStringOfMessageProvider _jsonStringOfMessageProvider;
-        private readonly INamesBySystemProvider _namesBySystemProvider;
+        private readonly IJsonStringifiedObjectFactory _stringifiedObjectFactory;
+        private readonly IMessageNamesBySystemProvider _messageNamesBySystemProvider;
 
         public ActorNetController(
-            INamesBySystemProvider namesBySystemProvider,
-            IJsonStringOfMessageProvider jsonStringOfMessageProvider
+            IMessageNamesBySystemProvider messageNamesBySystemProvider,
+            IJsonStringifiedObjectFactory stringifiedObjectFactory
             )
         {
-            _namesBySystemProvider = namesBySystemProvider;
-            _jsonStringOfMessageProvider = jsonStringOfMessageProvider;
+            _messageNamesBySystemProvider = messageNamesBySystemProvider;
+            _stringifiedObjectFactory = stringifiedObjectFactory;
         }
 
         // GET: Akka
@@ -31,32 +34,44 @@ namespace ActorsNet.JavascriptGenerator.Controllers
         //[OutputCache(Duration=int.MaxValue)]
         public ActionResult Js()
         {
-            ViewBag.MessagesBySystem = MessagesNamesBySystemDictionary();
+            var messagesBySystem = MessagesNamesBySystemDictionary();
+            ViewBag.MessagesBySystem = messagesBySystem;
             ViewBag.JsonStringFromMessageType =
-                JsonStringFromMessageDictionary();
+                JsonStringFromMessageDictionary(messagesBySystem);
             return PartialView();
         }
 
-        private IDictionary<string, string> JsonStringFromMessageDictionary()
+        private IDictionary<string, string> JsonStringFromMessageDictionary(IDictionary<string, IList<string>> messageByName)
         {
-            if (_jsonStringOfMessageProvider == null)
+
+            var dict = new Dictionary<string, string>().WithDefaultValue("{}");
+            foreach (var system in messageByName)
             {
-                return new Dictionary<string, string>().WithDefaultValue("{}");
+                foreach (var message in system.Value)
+                {
+                    try
+                    {
+                        dict[message] = _stringifiedObjectFactory.CreateExampleJsonObjectOfType(message);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.Write(e);
+                    }
+                }
             }
-            return _jsonStringOfMessageProvider.Get()
-                .WithDefaultValue("{}");
+            return dict;
         }
 
-        private IDictionary<string, List<string>> MessagesNamesBySystemDictionary()
+        private IDictionary<string, IList<string>> MessagesNamesBySystemDictionary()
         {
             var emptyList = new List<string>();
-            if (_namesBySystemProvider == null)
+            if (_messageNamesBySystemProvider == null)
             {
-                var emptyDict = new Dictionary<string, List<string>>();
+                var emptyDict = new Dictionary<string, IList<string>>();
                 var emptyDefaultableDict = emptyDict.WithDefaultValue(emptyList);
                 return emptyDefaultableDict;
             }
-            return _namesBySystemProvider.Get();
+            return _messageNamesBySystemProvider.Get();
         }
     }
 }

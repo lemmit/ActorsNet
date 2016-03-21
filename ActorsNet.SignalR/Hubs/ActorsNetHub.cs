@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics;
 using ActorsNet.Exceptions;
 using ActorsNet.Infrastructure;
-using ActorsNet.Models;
 using ActorsNet.Services;
-using ActorsNet.SignalR.Mappers.Interfaces;
+using ActorsNet.SignalR.Models;
+using ActorsNet.SignalR.Services.Interfaces;
 using Microsoft.AspNet.SignalR;
+using Newtonsoft.Json.Linq;
 
 namespace ActorsNet.SignalR.Hubs
 {
@@ -15,7 +17,7 @@ namespace ActorsNet.SignalR.Hubs
     {
         private readonly ActorSystemResolver _actorSystemResolver;
         private readonly IMessageMapper _messageMapper;
-        private readonly TimeSpan standardTimeOut = TimeSpan.FromSeconds(20);
+        private readonly TimeSpan _standardTimeOut = TimeSpan.FromSeconds(20);
 
         public ActorsNetHub(ActorSystemResolver actorSystemResolver, IMessageMapper messageMapper)
         {
@@ -33,55 +35,56 @@ namespace ActorsNet.SignalR.Hubs
             return GetActorSystem(systemName).ActorExists(actorPath);
         }
 
-        public void Send(string systemName, string actorPath, Message message)
+        public void Send(string systemName, string actorPath, JObject message)
         {
             try
             {
-                var messageToActor = _messageMapper.Map(
-                    message.MessageData,
-                    message.MessageTypeName
-                    );
+                var messageToActor = _messageMapper.Map((JObject)(message["payload"]));
                 GetActorSystem(systemName).TellActor(actorPath, messageToActor);
             }
-            catch (ActorNotFoundException e)
+            catch (ActorNotFoundException)
             {
-                SendNotFoundMessageToClient(message.Guid);
+                SendNotFoundMessageToClient(ExtractGuid(message));
             }
             catch (Exception e)
             {
+                Debug.Write(e);
             }
         }
 
-        public void Ask(string systemName, string actorPath, Message message)
+        private static string ExtractGuid(JObject message)
         {
-            Ask(systemName, actorPath, message, standardTimeOut);
+            return message["guid"].ToString();
         }
 
-        public void Ask(string systemName, string actorPath, Message message, TimeSpan timeOut)
+        public void Ask(string systemName, string actorPath, JObject message)
+        {
+            Ask(systemName, actorPath, message, _standardTimeOut);
+        }
+
+        public void Ask(string systemName, string actorPath, JObject message, TimeSpan timeOut)
         {
             try
             {
-                var messageToActor = _messageMapper.Map(
-                    message.MessageData,
-                    message.MessageTypeName
-                    );
+                var messageToActor = _messageMapper.Map((JObject)message["payload"]);
                 GetActorSystem(systemName).AskActor(actorPath, messageToActor, response =>
                 {
                     var resp = new Response
                     {
-                        ReplyTo = message.Guid,
+                        ReplyToGuid = ExtractGuid(message),
                         ErrorCode = 0,
-                        Message = response
+                        Payload = response
                     };
                     Clients.Caller.actorsNetResponse(resp);
                 }, timeOut);
             }
-            catch (ActorNotFoundException e)
+            catch (ActorNotFoundException)
             {
-                SendNotFoundMessageToClient(message.Guid);
+                SendNotFoundMessageToClient(ExtractGuid(message));
             }
             catch (Exception e)
             {
+                Debug.Write(e);
             }
         }
 
@@ -95,7 +98,8 @@ namespace ActorsNet.SignalR.Hubs
             var msg = new Response
             {
                 ErrorCode = 404,
-                ReplyTo = guid
+                ReplyToGuid = guid,
+                Payload = new object()
             };
             Clients.Caller.actorsNetResponse(msg);
         }

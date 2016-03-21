@@ -2,8 +2,8 @@
 
 namespace ActorsNet.JavascriptGenerator.Providers.Interfaces
 {
-    public interface INamesBySystemProvider
+    public interface IJsonStringFromMessageProvider
     {
-        Dictionary<string, List<string>> Get();
+        Dictionary<string, string> Get();
     }
 }

@@ -93,10 +93,8 @@
     <Compile Include="Factories\JsonStringifiedObjectFactory.cs" />
     <Compile Include="Helper\ReflectionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\Interfaces\IJsonStringOfMessageProvider.cs" />
-    <Compile Include="Providers\Interfaces\INamesBySystemProvider.cs" />
-    <Compile Include="Providers\JsonFromMessageProvider.cs" />
-    <Compile Include="Providers\NamesBySystemInitializer.cs" />
+    <Compile Include="Providers\Interfaces\IJsonStringFromMessageProvider.cs" />
+    <Compile Include="Providers\Interfaces\IMessageNamesBySystemProvider.cs" />
     <Compile Include="Views\ActorNet\Js.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
