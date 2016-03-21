@@ -3,8 +3,7 @@ using ActorsNet.Exceptions;
 using ActorsNet.Infrastructure;
 using ActorsNet.Models;
 using ActorsNet.Services;
-using ActorsNet.Services.Interfaces;
-using ActorsNet.SignalR.Exceptions;
+using ActorsNet.SignalR.Mappers.Interfaces;
 using Microsoft.AspNet.SignalR;
 
 namespace ActorsNet.SignalR.Hubs

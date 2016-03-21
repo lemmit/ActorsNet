@@ -26,19 +26,15 @@ namespace ActorsNet.Web
             // Creation of the system and message mappings
             // Here is the place where you should start playing with the library.
             var actorSystem = CreateAkkaActorSystem();
-            var mapperInitializer = new MySystemMapperInitializer(actorSystem.Name);
-
-
+           
             var builder = new ContainerBuilder();
             //debug logger
             RegisterLogger(builder);
 
             //initialize ActorsNet modules
-            new AutofacActorsNetJavascriptGeneratorInitializer()
-                .RegisterTypes(builder, mapperInitializer);
-            new AutofacActorsNetSignalRInitializer()
-                .RegisterTypes(builder, mapperInitializer);
-
+            builder.RegisterJavascriptGenerator();
+            builder.RegisterSignalRRouterHub();
+            
             RegisterActorSystem(builder, actorSystem);
 
             //register controllers and hubs from this assembly

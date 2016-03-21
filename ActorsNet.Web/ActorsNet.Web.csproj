@@ -196,7 +196,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Initializers\MySystemMapperInitializer.cs" />
     <Compile Include="Logging\LogRequestAutofacModule.cs" />
     <Compile Include="Messages\Echo.cs" />
     <Compile Include="Messages\Greet.cs" />
