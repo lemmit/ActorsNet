@@ -200,7 +200,6 @@
     <Compile Include="Messages\Echo.cs" />
     <Compile Include="Messages\Greet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\MessagesBySystemNameProvider.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

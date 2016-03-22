@@ -95,6 +95,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\Interfaces\IJsonStringFromMessageProvider.cs" />
     <Compile Include="Providers\Interfaces\IMessageNamesBySystemProvider.cs" />
+    <Compile Include="Providers\MessagesBySystemNameProvider.cs" />
     <Compile Include="Views\ActorNet\Js.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

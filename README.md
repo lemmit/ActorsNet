@@ -17,16 +17,19 @@ Concrete implementation for ActorsNet classes using Akka.Net
 
 ### ActorsNet.SignalR
 Module that allows async calls between server and client.
-Contains script for creating ActorSystem proxy on the client-side and call server-side actors 
 
 ### ActorsNet.JavascriptGenerator
 Generates factories for creating strongly typed messages (possibility to save generated js and use it for code completion instead of writing message type names by hand).
 
-### ActorsNet.Web
-Example application, contains actor system creation code, initializers and example calls.
-
 ### ActorsNet.{SignalR, JavaScriptGenerator}.Autofac
 Projects that contains initializer classes that can be used with Autofac IoC.
+
+### ActorsNet.Web
+Example application, contains actor system creation code, initializers and example calls.  
+
+Contains script for creating ActorSystem proxy on the client-side and call server-side actors [actorsnet.js]  
+
+Change app.js to test communication with hand-written messages or generated ones.  
 
 ## Examples
 
@@ -50,9 +53,12 @@ Projects that contains initializer classes that can be used with Autofac IoC.
         }
 		public string Message { get; private set; }
     }
+	//if Javascript generator is used
+	builder.RegisterJavascriptGenerator(new MessagesBySystemNameProvider()
+												.Add<Echo>(ActorSystemName)
+												.Add<Greet>(ActorSystemName));
 ```
 #### Create actor system, and initialize it in the container
-
 	builder.RegisterActorSystem(actorSystem);	
 
 ### Example without ActorsNet.JavascriptGenerator
@@ -100,6 +106,7 @@ Projects that contains initializer classes that can be used with Autofac IoC.
 
 ### TODOs
 - Add more tests
+- Make nuget packages
 - Implement and test different Akka.Net ActorFinder strategies (akka.tcp/cluster)
 - Integration with client side actors library (https://github.com/mental/webactors ?) to allow communication between JS actors
 - Implementation of a server side router actor to allow calls from server to client-side declared actors (Actorish-WebWorkers)

@@ -69,18 +69,20 @@ var ActorsNetSystem = function(systemName) {
         return deferred.promise();
     };
 
-    system.hub.client.actorsNetResponse = function(msg) {
+    system.hub.client.actorsNetResponse = function (msg) {
         Logger.debug("Response msg received: ", msg);
-        var deffered = system.replyTo[msg.ReplyTo];
+        var deffered = system.replyTo[msg.ReplyToGuid];
         if (deffered) {
             if (msg.ErrorCode === 0) {
                 Logger.debug("Msg received[No Error]: ", msg);
-                deffered.resolve(msg.Message);
+                Logger.debug("Payload: " + msg.Payload);
+                deffered.resolve(msg.Payload);
             } else {
                 Logger.debug("Msg received[With Error]: ", msg);
-                deffered.reject(msg.Message);
+                deffered.reject(msg.Payload);
             }
-
+        } else {
+            Logger.debug("No handler found for response message.");
         }
     };
 
@@ -89,7 +91,7 @@ var ActorsNetSystem = function(systemName) {
         system.hub.server.send(system.systemName, actor.path, msg);
         var deferred = $.Deferred();
         if (msg.Guid) {
-            system.replyTo[msg.Guid] = deferred;
+            system.replyTo[msg.guid] = deferred;
         } else deferred.resolve();
         return deferred.promise();
     };
@@ -97,7 +99,7 @@ var ActorsNetSystem = function(systemName) {
     system.ask = function(actor, msg) {
         Logger.debug("Msg ask actor: " + actor.path, msg);
         var deferred = $.Deferred();
-        system.replyTo[msg.Guid] = deferred;
+        system.replyTo[msg.guid] = deferred;
         system.hub.server.ask(system.systemName, actor.path, msg);
         return deferred.promise();
     };

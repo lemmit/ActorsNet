@@ -11,7 +11,8 @@ using ActorSystem = ActorsNet.Infrastructure.ActorSystem;
 using AkkaActorSystem = Akka.Actor.ActorSystem;
 using AutofacDependencyResolver = Autofac.Integration.Mvc.AutofacDependencyResolver;
 using ActorsNet.JavascriptGenerator.Autofac;
-using ActorsNet.Web.Providers;
+using ActorsNet.JavascriptGenerator.Providers;
+using ActorsNet.Web.Messages;
 
 namespace ActorsNet.Web
 {
@@ -45,6 +46,7 @@ namespace ActorsNet.Web
 
     public class Startup
     {
+        const string ActorSystemName = "MySystem";
         public void Configuration(IAppBuilder app)
         {
             var builder = new ContainerBuilder();
@@ -52,7 +54,9 @@ namespace ActorsNet.Web
             builder.RegisterLogger();
 
             //initialize ActorsNet modules
-            builder.RegisterJavascriptGenerator(new MessagesBySystemNameProvider());
+            builder.RegisterJavascriptGenerator(new MessagesBySystemNameProvider()
+                                                        .Add<Echo>(ActorSystemName)
+                                                        .Add<Greet>(ActorSystemName));
             builder.RegisterSignalRRouterHub();
 
             var actorSystem = CreateAkkaActorSystem();
@@ -67,8 +71,7 @@ namespace ActorsNet.Web
 
         private static AkkaActorSystem CreateAkkaActorSystem()
         {
-            const string actorSystemName = "MySystem";
-            var actorSystem = AkkaActorSystem.Create(actorSystemName);
+            var actorSystem = AkkaActorSystem.Create(ActorSystemName);
             actorSystem.ActorOf<GreetingActor>("greeting");
             actorSystem.ActorOf<EchoActor>("echo");
             return actorSystem;
